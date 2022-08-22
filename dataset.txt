@@ -1,0 +1,42 @@
+Amazon Reviews for Sentiment Analysis
+
+Sobre o conjunto de dados
+Esse conjunto de dados consiste em alguns milhões de avaliações de clientes da Amazon (texto de entrada) e classificações por estrelas (rótulos de saída) para aprender como treinar o fastText para análise de sentimentos.
+
+A ideia aqui é que um conjunto de dados é mais do que um brinquedo - dados reais de negócios em uma escala razoável - mas pode ser treinado em minutos em um laptop modesto.
+
+Contente
+O tutorial de aprendizado supervisionado do fastText requer dados no seguinte formato:
+
+__label__<X> __label__<Y> ... <Text>
+onde X e Y são os nomes das classes. Sem aspas, tudo em uma linha.
+
+Nesse caso, as classes são __label__1e __label__2, e há apenas uma classe por linha.
+
+__label__1corresponde a comentários de 1 e 2 estrelas e __label__2corresponde a comentários de 4 e 5 estrelas.
+
+(Revisões de 3 estrelas, ou seja, comentários com sentimento neutro não foram incluídos no original),
+
+Os títulos das resenhas, seguidos de ':' e um espaço, são anexados ao texto.
+
+A maioria das resenhas está em inglês, mas há algumas em outros idiomas, como o espanhol.
+
+Fonte
+Os dados foram extraídos do diretório do Google Drive de Xiang Zhang , mas estavam no formato .csv, não adequado para fastText.
+
+Treinamento e testes
+Siga as instruções básicas no tutorial de aprendizado supervisionado do fastText para configurar o diretório.
+
+Treinar:
+
+./fasttext supervised -input train.ft.txt -output model_amzn
+Isso deve levar alguns minutos.
+
+Testar:
+
+./fasttext test model_amzn.bin test.ft.txt
+Espere precisão e recall de 0,916 se tudo estiver em ordem.
+
+Você também pode treinar e testar em Python, veja Kernel.
+
+Link dataset: https://www.kaggle.com/datasets/bittlingmayer/amazonreviews
